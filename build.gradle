@@ -20,7 +20,8 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.jbehave:jbehave-core:4.7'
+    testImplementation 'org.jbehave:jbehave-core:4.8'
+    testImplementation 'org.jbehave.site:jbehave-site-resources:3.3.1'
     testImplementation 'com.github.valfirst:jbehave-junit-runner:2.3.0'
 
     // Use JUnit Jupiter API for testing.
@@ -45,10 +46,25 @@ tasks.named('test') {
 
 apply plugin: 'java'
 
+task copyJBehaveFilesToExpectedLocation(type: Copy) {
+    from 'target/jbehave/view'
+    from('src/test/resources/') {
+        include 'images/*'
+        include 'style/*'
+    }
+    into 'build/reports/jbehave'
+}
+
+task cleanTargetDirectory(type: Delete) {
+    delete 'target'
+}
+
 test {
     dependsOn cleanTest
     testLogging.showStandardStreams = true
-    finalizedBy jacocoTestReport // report is always generated after tests run
+    finalizedBy jacocoTestReport
+    finalizedBy copyJBehaveFilesToExpectedLocation
+    finalizedBy cleanTargetDirectory
     testLogging {
         events "passed", "skipped", "failed"
     }
@@ -79,7 +95,6 @@ sonarqube {
         property "sonar.sourceEncoding", "UTF-8"
     }
 }
-
 
 
 

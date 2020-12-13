@@ -6,7 +6,6 @@ Le but de cette séquence est de concevoir un jeu de morpion (TicTacToe) en prog
 
 *Pour intégrer ce projet dans Eclipse, le plus simple est de faire un `git clone` du projet dans votre compte personnel.*
 
-
 ## Etape 1 : les tests de base
 
 Vous disposer de toutes les classes nécessaires à la création de l'application.

@@ -3,11 +3,10 @@ variables:
   SONARINFO: "-Dsonar.host.url=http://sonarqube.univ-artois.fr/ -Dsonar.login=$SONARTOKEN"
 
 gradle:
-  image: gradle
+  image: gradle:6.7-jdk11
   stage: build
   script: 
       - "gradle $PROXY test"
-      - "gradle $PROXY $SONARINFO sonarqube"
   tags: 
      - docker
   artifacts:

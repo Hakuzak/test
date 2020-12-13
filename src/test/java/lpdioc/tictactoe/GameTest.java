@@ -1,38 +1,35 @@
 package lpdioc.tictactoe;
 
-import static org.jbehave.core.io.CodeLocations.*;
-import java.io.File;
+import static org.jbehave.core.io.CodeLocations.codeLocationFromPath;
 import java.util.List;
-
+import java.util.Properties;
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.configuration.MostUsefulConfiguration;
-
-import org.jbehave.core.Embeddable;
-import org.jbehave.core.io.CodeLocations;
 import org.jbehave.core.io.LoadFromClasspath;
 import org.jbehave.core.io.StoryFinder;
 import org.jbehave.core.junit.JUnitStories;
+import org.jbehave.core.reporters.CrossReference;
 import org.jbehave.core.reporters.Format;
 import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.InstanceStepsFactory;
-import org.junit.runner.RunWith;
 
-import com.github.valfirst.jbehave.junit.monitoring.JUnitReportingRunner;
-
-@RunWith(JUnitReportingRunner.class)
 public class GameTest extends JUnitStories {
 
+    private final CrossReference xref = new CrossReference();
+    
     public GameTest() {
-        configuredEmbedder().embedderControls().doGenerateViewAfterStories(false).doIgnoreFailureInStories(false)
+        configuredEmbedder().embedderControls().doGenerateViewAfterStories(true).doIgnoreFailureInStories(false)
                 .doIgnoreFailureInView(false).doVerboseFailures(true);
     }
 
     @Override
     public Configuration configuration() {
+        Properties viewResources = new Properties();
+        viewResources.put("decorateNonHtml", "false");
         return new MostUsefulConfiguration()
                 .useStoryLoader(new LoadFromClasspath(this.getClass()))
-                .useStoryReporterBuilder(new StoryReporterBuilder().withDefaultFormats().withFormats(Format.CONSOLE));
+                .useStoryReporterBuilder(new StoryReporterBuilder().withDefaultFormats().withViewResources(viewResources).withFormats(Format.CONSOLE,Format.HTML).withFailureTrace(true).withFailureTraceCompression(true).withCrossReference(xref));
     }
 
     @Override
