@@ -1,12 +1,13 @@
 variables:
   PROXY: "-Dhttp.proxyHost=cache-etu.univ-artois.fr -Dhttp.proxyPort=3128 -Dhttps.proxyHost=cache-etu.univ-artois.fr -Dhttps.proxyPort=3128 -Dhttp.nonProxyHosts=localhost"
+  SONARINFO: "-Dsonar.host.url=http://sonarqube.univ-artois.fr/ -Dsonar.login=$SONARTOKEN"
 
 gradle:
   image: gradle
   stage: build
   script: 
       - "gradle $PROXY test"
-      - "gradle -Dsonar.login=$SONARTOKEN sonarqube"
+      - "gradle $PROXY $SONARINFO sonarqube"
   tags: 
      - docker
   artifacts:
