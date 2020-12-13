@@ -6,6 +6,7 @@ gradle:
   stage: build
   script: 
       - "gradle $PROXY test"
+      - "gradle -Dsonar.login=$SONARTOKEN sonarqube"
   tags: 
      - docker
   artifacts:
