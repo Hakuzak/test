@@ -4,7 +4,7 @@ package lpdioc.tictactoe;
 public class GameFactory {
 
     private GameFactory() {
-        // pour empêcher la création d'une instance de cette classe
+        throw new IllegalStateException("Utility class");
     }
 
     public static Game createGame(String name, int nbCols, int nbRows) {
