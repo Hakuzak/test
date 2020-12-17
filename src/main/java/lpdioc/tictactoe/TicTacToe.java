@@ -73,22 +73,90 @@ public class TicTacToe implements Game {
 
 	
 	private boolean aLineCompleted() {
-		// TODO
+		for (int i = 0; i<this.nbRows; i++) {
+			if (this.grid[i][0] != null) {
+				String move = this.grid[i][0];
+				for (int j = 0; j < this.nbCols; j++) {
+					if (this.grid[i][j] != null){
+						if (!this.grid[i][j].equals(move)){
+							break;
+						}
+						else if (j == this.nbCols - 1 && this.grid[i][j].equals(move)) {
+//							System.out.println(true);
+							return true;
+						}
+					}
+					else {
+						break;
+					}
+				}
+			}
+		}
 		return false;
 	}
 
 	private boolean aColumnCompleted() {
-		// TODO
+		for (int i = 0; i<this.nbCols; i++) {
+			if (this.grid[0][i] != null) {
+				String move = this.grid[0][i];
+				for (int j = 0; j < this.nbRows; j++) {
+					System.out.println(i + " " + j);
+					if (this.grid[j][i] != null){
+						if (!this.grid[j][i].equals(move)){
+							break;
+						}
+						else if (j == this.nbRows - 1 && this.grid[j][i].equals(move)) {
+							return true;
+						}
+					}
+					else {
+						break;
+					}
+				}
+			}
+		}
 		return false;
 	}
 
 	private boolean firstDiagonalCompleted() {
-		// TODO
+		if (this.grid[0][0] != null){
+			String move = this.grid[0][0];
+			for (int  i = 0; i<nbRows; i++) {
+				if (this.grid[i][i] != null){
+					if (!this.grid[i][i].equals(move)){
+						break;
+					}
+					else if (i == this.nbRows - 1 && this.grid[i][i].equals(move)) {
+						return true;
+					}
+				}
+				else {
+					break;
+				}
+			}
+		}
 		return false;
 	}
 
 	private boolean secondDiagCompleted() {
-		// TODO
+		if (this.grid[0][nbCols-1] != null){
+			String move = this.grid[0][nbCols-1];
+			int var = this.nbCols-1;
+			for (int  i = 0; i<nbRows; i++) {
+				if (this.grid[i][var] != null){
+					if (!this.grid[i][var].equals(move)){
+						break;
+					}
+					else if (i == this.nbRows - 1 && this.grid[i][var].equals(move)) {
+						return true;
+					}
+				}
+				else {
+					break;
+				}
+				var--;
+			}
+		}
 		return false;
 	}
 
@@ -101,7 +169,7 @@ public class TicTacToe implements Game {
 
 	@Override
 	public void performMove(String move, int x, int y) {
-		// TODO 
+		this.grid[y-1][x-1] = move;
 	}
 
 	@Override
