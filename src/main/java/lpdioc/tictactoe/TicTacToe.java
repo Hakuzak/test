@@ -38,7 +38,6 @@ public class TicTacToe implements Game {
 
 	private String actual;
 
-	// TODO some additional fields may be needed
 	
 	public TicTacToe(String board) {
 		String[] rows = board.split("\n");
