@@ -1,8 +1,5 @@
 package lpdioc.tictactoe;
 
-
-import java.io.Console;
-
 /**
  * Simple TicTacToe game.
  * 
@@ -161,7 +158,6 @@ public class TicTacToe implements Game {
 
 	@Override
 	public void performMove(String move, int x, int y) {
-		System.out.println(this.actual);
 		if (this.player1.equals("") && !this.player2.equals(move)){
 			this.player1 = move;
 		}
