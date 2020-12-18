@@ -1,6 +1,8 @@
 package lpdioc.tictactoe;
 
 
+import java.io.Console;
+
 /**
  * Simple TicTacToe game.
  * 
@@ -33,6 +35,12 @@ public class TicTacToe implements Game {
 	 */
 	private int toFill;
 
+	private String player1;
+
+	private String player2;
+
+	private String actual;
+
 	// TODO some additional fields may be needed
 	
 	public TicTacToe(String board) {
@@ -41,6 +49,9 @@ public class TicTacToe implements Game {
 		this.nbCols = rows[0].length();
 		this.grid = new String[nbRows][nbCols];
 		this.toFill = this.nbRows*this.nbCols;
+		this.player1 = "";
+		this.player2 = "";
+		this.actual = player1;
 		char car;
 		for (int y = 0; y < this.nbRows; y++) {
 			if (rows[y].length() != this.nbCols) {
@@ -69,6 +80,9 @@ public class TicTacToe implements Game {
 		this.nbRows = nbRows;
 		this.grid = new String[nbRows][nbCols];
 		this.toFill = nbCols * nbRows;
+		this.player1 = "";
+		this.player2 = "";
+		this.actual = player1;
 	}
 
 	
@@ -147,7 +161,36 @@ public class TicTacToe implements Game {
 
 	@Override
 	public void performMove(String move, int x, int y) {
-		this.grid[y-1][x-1] = move;
+		System.out.println(this.actual);
+		if (this.player1.equals("") && !this.player2.equals(move)){
+			this.player1 = move;
+		}
+		else if (this.player2.equals("") && !this.player1.equals(move)){
+			this.player2 = move;
+		}
+		else if(!this.player1.equals(move) && !this.player2.equals(move)) {
+			throw new IllegalArgumentException("can only use two marks for this game");
+		}
+
+		if(x>this.nbCols || y>this.nbRows || x<=0 || y<=0) {
+			throw new IllegalArgumentException("incorrect position");
+		}
+		else if(this.grid[y-1][x-1] !=null){
+			throw new IllegalArgumentException("cell not empty");
+		}
+		else if(this.grid[y-1][x-1] !=null && this.grid[y-1][x-1].equals(move) || move.equals(this.actual)){
+			throw new IllegalArgumentException("cannot make twice the same move");
+		}
+		else {
+			this.grid[y-1][x-1] = move;
+			this.toFill--;
+		}
+		if(this.actual.equals(this.player1)){
+			this.actual =this.player2;
+		}
+		else {
+			this.actual =this.player1;
+		}
 	}
 
 	@Override
