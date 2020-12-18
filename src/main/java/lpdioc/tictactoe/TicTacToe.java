@@ -85,6 +85,9 @@ public class TicTacToe implements Game {
 							return true;
 						}
 					}
+					else {
+						break;
+					}
 				}
 			}
 		}
@@ -104,6 +107,9 @@ public class TicTacToe implements Game {
 							return true;
 						}
 					}
+					else {
+						break;
+					}
 				}
 			}
 		}
@@ -122,6 +128,9 @@ public class TicTacToe implements Game {
 						return true;
 					}
 				}
+				else {
+					break;
+				}
 			}
 		}
 		return false;
@@ -139,6 +148,9 @@ public class TicTacToe implements Game {
 					else if (i == this.nbRows - 1 && this.grid[i][var].equals(move)) {
 						return true;
 					}
+				}
+				else {
+					break;
 				}
 				var--;
 			}
