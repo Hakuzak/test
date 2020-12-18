@@ -100,7 +100,6 @@ public class TicTacToe implements Game {
 			if (this.grid[0][i] != null) {
 				String move = this.grid[0][i];
 				for (int j = 0; j < this.nbRows; j++) {
-					System.out.println(i + " " + j);
 					if (this.grid[j][i] != null){
 						if (!this.grid[j][i].equals(move)){
 							break;
