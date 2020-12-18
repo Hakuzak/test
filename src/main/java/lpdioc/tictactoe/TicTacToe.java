@@ -77,16 +77,11 @@ public class TicTacToe implements Game {
 			if (this.grid[i][0] != null) {
 				String move = this.grid[i][0];
 				for (int j = 0; j < this.nbCols; j++) {
-					if (this.grid[i][j] != null){
-						if (!this.grid[i][j].equals(move)){
-							break;
-						}
-						else if (j == this.nbCols - 1 && this.grid[i][j].equals(move)) {
-							return true;
-						}
-					}
-					else {
+					if (this.grid[i][j] == null || !this.grid[i][j].equals(move)){
 						break;
+					}
+					else if (j == this.nbCols - 1 && this.grid[i][j].equals(move)) {
+						return true;
 					}
 				}
 			}
@@ -99,16 +94,11 @@ public class TicTacToe implements Game {
 			if (this.grid[0][i] != null) {
 				String move = this.grid[0][i];
 				for (int j = 0; j < this.nbRows; j++) {
-					if (this.grid[j][i] != null){
-						if (!this.grid[j][i].equals(move)){
-							break;
-						}
-						else if (j == this.nbRows - 1 && this.grid[j][i].equals(move)) {
-							return true;
-						}
-					}
-					else {
+					if (this.grid[j][i] == null || !this.grid[j][i].equals(move)){
 						break;
+					}
+					else if (j == this.nbRows - 1 && this.grid[j][i].equals(move)) {
+						return true;
 					}
 				}
 			}
@@ -120,16 +110,11 @@ public class TicTacToe implements Game {
 		if (this.grid[0][0] != null){
 			String move = this.grid[0][0];
 			for (int  i = 0; i<nbRows; i++) {
-				if (this.grid[i][i] != null){
-					if (!this.grid[i][i].equals(move)){
-						break;
-					}
-					else if (i == this.nbRows - 1 && this.grid[i][i].equals(move)) {
-						return true;
-					}
-				}
-				else {
+				if (this.grid[i][i] == null || !this.grid[i][i].equals(move)){
 					break;
+				}
+				else if (i == this.nbRows - 1 && this.grid[i][i].equals(move)) {
+					return true;
 				}
 			}
 		}
@@ -141,16 +126,11 @@ public class TicTacToe implements Game {
 			String move = this.grid[0][nbCols-1];
 			int var = this.nbCols-1;
 			for (int  i = 0; i<nbRows; i++) {
-				if (this.grid[i][var] != null){
-					if (!this.grid[i][var].equals(move)){
-						break;
-					}
-					else if (i == this.nbRows - 1 && this.grid[i][var].equals(move)) {
-						return true;
-					}
-				}
-				else {
+				if (this.grid[i][var] == null || !this.grid[i][var].equals(move)){
 					break;
+				}
+				else if (i == this.nbRows - 1 && this.grid[i][var].equals(move)) {
+					return true;
 				}
 				var--;
 			}
